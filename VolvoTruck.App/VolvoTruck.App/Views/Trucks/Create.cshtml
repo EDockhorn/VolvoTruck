@@ -1,12 +1,11 @@
 ﻿@model VolvoTruck.App.Models.Truck
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Caminhão";
 }
 
-<h2>Create</h2>
+<h2 style="padding-top: 20px">@ViewData["Title"]</h2>
 
-<h4>Truck</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,25 +17,28 @@
                 <span asp-validation-for="ModelYear" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="FabricationYear" class="control-label"></label>
+                <input asp-for="FabricationYear" class="form-control" readonly="readonly" value="@DateTime.Now.Year"/>
+                <span asp-validation-for="FabricationYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>            
+            </div>
             <div class="form-group">
                 <label asp-for="TruckModel" class="control-label"></label> <br />
                 <input type="radio" value="1" asp-for="TruckModel" checked /> FH <br />
                 <input type="radio" value="2" asp-for="TruckModel" checked /> FM <br />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

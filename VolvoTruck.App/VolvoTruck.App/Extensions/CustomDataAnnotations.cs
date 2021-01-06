@@ -11,11 +11,8 @@ namespace VolvoTruck.App.Extensions
 
         public override bool IsValid(object value)
         {
-            var dt = (int)value;
-            if (dt >= DateTime.Now.Year)
-            {
-                return true;
-            }
+            if ((int)value >= DateTime.Now.Year) return true;
+
             return false;
         }
     }
