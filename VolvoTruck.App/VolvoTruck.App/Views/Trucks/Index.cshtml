@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VolvoTruck.App.Models.Caminhao>
+﻿@model IEnumerable<VolvoTruck.App.Models.Truck>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AnoModelo)
+                @Html.DisplayNameFor(model => model.ModelYear)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnoFabricacao)
+                @Html.DisplayNameFor(model => model.FabricationYear)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Modelo)
+                @Html.DisplayNameFor(model => model.TruckModel)
             </th>
             <th></th>
         </tr>
@@ -31,16 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AnoModelo)
+                @Html.DisplayFor(modelItem => item.ModelYear)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnoFabricacao)
+                @Html.DisplayFor(modelItem => item.FabricationYear)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
+                @Html.DisplayFor(modelItem => item.TruckModel)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

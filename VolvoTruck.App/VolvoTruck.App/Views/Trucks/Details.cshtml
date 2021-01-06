@@ -1,0 +1,42 @@
+﻿@model VolvoTruck.App.Models.Truck
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModelYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FabricationYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FabricationYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TruckModel)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace VolvoTruck.App.Migrations
 {
     [DbContext(typeof(VolvoTruckAppContext))]
-    [Migration("20210105214925_Initial")]
-    partial class Initial
+    [Migration("20210106000408_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,22 +20,22 @@ namespace VolvoTruck.App.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("VolvoTruck.App.Models.Caminhao", b =>
+            modelBuilder.Entity("VolvoTruck.App.Models.Truck", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AnoFabricacao");
+                    b.Property<string>("Description");
 
-                    b.Property<int>("AnoModelo");
+                    b.Property<int>("FabricationYear");
 
-                    b.Property<string>("Descricao");
+                    b.Property<int>("ModelYear");
 
-                    b.Property<int>("Modelo");
+                    b.Property<int>("TruckModel");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Caminhoes");
+                    b.ToTable("Trucks");
                 });
 #pragma warning restore 612, 618
         }

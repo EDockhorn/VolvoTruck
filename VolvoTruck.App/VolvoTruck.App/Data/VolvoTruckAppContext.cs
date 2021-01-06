@@ -8,5 +8,5 @@ public class VolvoTruckAppContext : DbContext
     {
     }
 
-    public DbSet<Caminhao> Caminhoes { get; set; }
+    public DbSet<Truck> Trucks { get; set; }
 }

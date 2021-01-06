@@ -9,21 +9,21 @@ using VolvoTruck.App.Models;
 
 namespace VolvoTruck.App.Controllers
 {
-    public class CaminhoesController : Controller
+    public class TrucksController : Controller
     {
         private readonly VolvoTruckAppContext _context;
 
-        public CaminhoesController(VolvoTruckAppContext context)
+        public TrucksController(VolvoTruckAppContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Caminhoes.ToListAsync());
+            return View(await _context.Trucks.ToListAsync());
         }
 
-        // GET: Caminhaos/Details/5
+        // GET: Trucks/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -31,37 +31,37 @@ namespace VolvoTruck.App.Controllers
                 return NotFound();
             }
 
-            var caminhao = await _context.Caminhoes
+            var Truck = await _context.Trucks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (caminhao == null)
+            if (Truck == null)
             {
                 return NotFound();
             }
 
-            return View(caminhao);
+            return View(Truck);
         }
 
-        // GET: Caminhaos/Create
+        // GET: Trucks/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Caminhaos/Create
+        // POST: Trucks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Caminhao caminhao)
+        public async Task<IActionResult> Create(Truck Truck)
         {
-            if (!ModelState.IsValid) return View(caminhao);
+            if (!ModelState.IsValid) return View(Truck);
 
-            _context.Add(caminhao);
+            _context.Add(Truck);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Caminhaos/Edit/5
+        // GET: Trucks/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -69,36 +69,33 @@ namespace VolvoTruck.App.Controllers
                 return NotFound();
             }
 
-            var caminhao = await _context.Caminhoes.FindAsync(id);
-            if (caminhao == null)
+            var Truck = await _context.Trucks.FindAsync(id);
+            if (Truck == null)
             {
                 return NotFound();
             }
-            return View(caminhao);
+            return View(Truck);
         }
 
-        // POST: Caminhaos/Edit/5
+        // POST: Trucks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,AnoModelo,AnoFabricacao,Descricao,Modelo")] Caminhao caminhao)
+        public async Task<IActionResult> Edit(Guid id, Truck Truck)
         {
-            if (id != caminhao.Id)
-            {
-                return NotFound();
-            }
+            if (id != Truck.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(caminhao);
+                    _context.Update(Truck);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CaminhaoExists(caminhao.Id))
+                    if (!TruckExists(Truck.Id))
                     {
                         return NotFound();
                     }
@@ -109,10 +106,10 @@ namespace VolvoTruck.App.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(caminhao);
+            return View(Truck);
         }
 
-        // GET: Caminhaos/Delete/5
+        // GET: Trucks/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -120,30 +117,30 @@ namespace VolvoTruck.App.Controllers
                 return NotFound();
             }
 
-            var caminhao = await _context.Caminhoes
+            var Truck = await _context.Trucks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (caminhao == null)
+            if (Truck == null)
             {
                 return NotFound();
             }
 
-            return View(caminhao);
+            return View(Truck);
         }
 
-        // POST: Caminhaos/Delete/5
+        // POST: Trucks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var caminhao = await _context.Caminhoes.FindAsync(id);
-            _context.Caminhoes.Remove(caminhao);
+            var Truck = await _context.Trucks.FindAsync(id);
+            _context.Trucks.Remove(Truck);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CaminhaoExists(Guid id)
+        private bool TruckExists(Guid id)
         {
-            return _context.Caminhoes.Any(e => e.Id == id);
+            return _context.Trucks.Any(e => e.Id == id);
         }
     }
 }
