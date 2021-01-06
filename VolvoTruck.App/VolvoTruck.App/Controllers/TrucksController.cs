@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -20,34 +21,29 @@ namespace VolvoTruck.App.Controllers
         {
             return View(await _context.Trucks.ToListAsync());
         }
+        public async Task<List<Truck>> ListTrucks()
+        {
+            return await _context.Trucks.ToListAsync();
+        }
 
-        // GET: Trucks/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var Truck = await _context.Trucks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Truck == null)
-            {
-                return NotFound();
-            }
+
+            if (Truck == null) return NotFound();
 
             return View(Truck);
         }
 
-        // GET: Trucks/Create
         public IActionResult Create()
         {
+            ViewBag.modelYear = ModelYearLists();
             return View();
         }
 
-        // POST: Trucks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Truck Truck)
@@ -62,64 +58,47 @@ namespace VolvoTruck.App.Controllers
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) return NotFound();
-            
+
             var Truck = await _context.Trucks.FindAsync(id);
             if (Truck == null) return NotFound();
-            
+
+            ViewBag.modelYear = ModelYearLists();
+
             return View(Truck);
         }
 
-        // POST: Trucks/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, Truck Truck)
         {
             if (id != Truck.Id) return NotFound();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(Truck);
+
+            try
             {
-                try
-                {
-                    _context.Update(Truck);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TruckExists(Truck.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(Truck);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(Truck);
+            catch (Exception)
+            {
+                return View(Truck);
+            }
         }
 
-        // GET: Trucks/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var Truck = await _context.Trucks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (Truck == null)
-            {
-                return NotFound();
-            }
+
+            if (Truck == null) return NotFound();
 
             return View(Truck);
         }
 
-        // POST: Trucks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -130,9 +109,9 @@ namespace VolvoTruck.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TruckExists(Guid id)
+        public List<int> ModelYearLists()
         {
-            return _context.Trucks.Any(e => e.Id == id);
+            return new List<int>(Enumerable.Range(DateTime.Now.Year, ((DateTime.Now.Year + 1) - DateTime.Now.Year) + 1));
         }
     }
 }

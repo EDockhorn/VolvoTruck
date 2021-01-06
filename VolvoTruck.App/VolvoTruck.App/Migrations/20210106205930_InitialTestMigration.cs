@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VolvoTruck.App.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialTestMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace VolvoTruck.App.Migrations
                     ModelYear = table.Column<int>(nullable: false),
                     FabricationYear = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    TruckModel = table.Column<int>(nullable: false)
+                    TruckModel = table.Column<int>(nullable: false),
+                    Plate = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

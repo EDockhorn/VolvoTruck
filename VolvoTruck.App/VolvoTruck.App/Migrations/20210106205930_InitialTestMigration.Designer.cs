@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace VolvoTruck.App.Migrations
 {
     [DbContext(typeof(VolvoTruckAppContext))]
-    [Migration("20210106191452_UpdatePlateProp")]
-    partial class UpdatePlateProp
+    [Migration("20210106205930_InitialTestMigration")]
+    partial class InitialTestMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -19,6 +19,7 @@ namespace VolvoTruck.App.Models
         public string Description { get; set; }
 
         [DisplayName("Modelo")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public TruckModelEnum TruckModel { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
