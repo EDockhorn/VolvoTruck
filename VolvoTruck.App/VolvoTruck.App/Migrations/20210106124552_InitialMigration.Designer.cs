@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace VolvoTruck.App.Migrations
 {
     [DbContext(typeof(VolvoTruckAppContext))]
-    [Migration("20210106000408_InitialMigration")]
+    [Migration("20210106124552_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
