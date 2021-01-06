@@ -11,12 +11,19 @@ namespace VolvoTruck.App.Models
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("Ano Modelo")]
         public int ModelYear { get; set; }
+
         [DisplayName("Ano de Fabricação")]
         public int FabricationYear { get; set; }
+
         [DisplayName("Descrição")]
         public string Description { get; set; }
+
         [DisplayName("Modelo")]
         public TruckModelEnum TruckModel { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [DisplayName("Placa")]
+        public string Plate { get; set; }
 
         public Truck()
         {

@@ -10,8 +10,11 @@
     <a class="btn btn-info" asp-action="Create">Novo Caminhão</a>
 </p>
 <table class="table table-hover">
-    <thead class="">
+    <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plate)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ModelYear)
             </th>
@@ -31,6 +34,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plate)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ModelYear)
                 </td>

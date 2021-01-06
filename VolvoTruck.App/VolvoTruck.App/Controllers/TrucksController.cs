@@ -59,19 +59,13 @@ namespace VolvoTruck.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Trucks/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null) return NotFound();
+            
             var Truck = await _context.Trucks.FindAsync(id);
-            if (Truck == null)
-            {
-                return NotFound();
-            }
+            if (Truck == null) return NotFound();
+            
             return View(Truck);
         }
 
