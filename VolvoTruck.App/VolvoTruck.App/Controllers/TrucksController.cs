@@ -19,11 +19,7 @@ namespace VolvoTruck.App.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Trucks.ToListAsync());
-        }
-        public async Task<List<Truck>> ListTrucks()
-        {
-            return await _context.Trucks.ToListAsync();
+            return View(await ListTrucks());
         }
 
         public async Task<IActionResult> Details(Guid? id)
@@ -46,7 +42,8 @@ namespace VolvoTruck.App.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Truck Truck)
+        [HttpPost, ActionName("Create")]
+        public async Task<IActionResult> CreatePost(Truck Truck)
         {
             if (!ModelState.IsValid) return View(Truck);
 
@@ -112,6 +109,10 @@ namespace VolvoTruck.App.Controllers
         public List<int> ModelYearLists()
         {
             return new List<int>(Enumerable.Range(DateTime.Now.Year, ((DateTime.Now.Year + 1) - DateTime.Now.Year) + 1));
+        }
+        public async Task<List<Truck>> ListTrucks()
+        {
+            return await _context.Trucks.ToListAsync();
         }
     }
 }
