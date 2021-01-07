@@ -46,7 +46,8 @@ namespace VolvoTruck.App
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<VolvoTruckAppContext>();
                 context.Database.Migrate();
-                
+                context.Database.EnsureCreated();
+
             }
 
             if (env.IsDevelopment())
