@@ -1,4 +1,4 @@
-# VolvoTruck
+# VolvoTruck.App
 
 Projeto desenvolvido para avaliação.
 
