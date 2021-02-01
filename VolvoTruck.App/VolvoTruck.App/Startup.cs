@@ -37,6 +37,9 @@ namespace VolvoTruck.App
 
             services.AddDbContext<VolvoTruckAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("VolvoTruckAppContext")));
+
+
+            //services.AddDbContext<VolvoTruckAppContext>(options => options.UseInMemoryDatabase("VoltoTruckAppInMemory"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
